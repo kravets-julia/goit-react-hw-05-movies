@@ -1,10 +1,13 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieDetailsInfo from 'components/MovieDetailsInfo/MovieDetailsInfo';
+import css from './MovieDetails.module.css';
 
 const MoviesDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState('');
+  const location = useLocation();
+  const backLinkLocationRef = useRef(location.state?.from ?? '/movies');
 
   useEffect(() => {
     const BASE_URL = 'https://api.themoviedb.org/3/movie/';
@@ -42,6 +45,7 @@ const MoviesDetails = () => {
 
   return (
     <>
+      <Link to={backLinkLocationRef.current}>Go back</Link>
       {movie && (
         <>
           <MovieDetailsInfo
@@ -52,17 +56,21 @@ const MoviesDetails = () => {
             overview={movie.overview}
             genresObj={movie.genres}
           />
-
-          <h3>Additional information</h3>
-          <ul>
-            <li>
-              <Link to="cast">Cast</Link>
-            </li>
-            <li>
-              <Link to="reviews">Reviews</Link>
-            </li>
-          </ul>
-
+          <div>
+            <h3>Additional information</h3>
+            <ul className={css.detailsContainer}>
+              <li className={css.detailsItem}>
+                <Link to="cast" className={css.detailsLink}>
+                  Cast
+                </Link>
+              </li>
+              <li className={css.detailsItem}>
+                <Link to="reviews" className={css.detailsLink}>
+                  Reviews
+                </Link>
+              </li>
+            </ul>
+          </div>
           <Outlet />
         </>
       )}

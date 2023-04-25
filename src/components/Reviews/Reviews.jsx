@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import css from './Reviews.module.css';
 
 const Reviews = () => {
   const { movieId } = useParams();
@@ -14,20 +15,26 @@ const Reviews = () => {
         `${BASE_URL}${movieId}/reviews?api_key=${API_KEY}`
       ).then(res => res.json());
       if (filmsReview.results.length === 0)
-        return setReviews('We don`t have any reviews for this movie');
+        return <p>We don`t have any reviews for this movie</p>;
       setReviews(filmsReview.results);
     }
 
     fetchReviews();
   }, [movieId]);
+  if (!reviews) {
+    return;
+  }
+  if (reviews.length === 0) {
+    return <p>We don't have any information.</p>;
+  }
 
   return (
     <>
       {reviews && (
         <ul>
           {reviews.map(({ author, content, id }) => (
-            <li key={id}>
-              <p>Author: {author}</p>
+            <li key={id} className={css.reviewsList}>
+              <p className={css.reviewsText}>Author: {author}</p>
               <p>{content}</p>
             </li>
           ))}

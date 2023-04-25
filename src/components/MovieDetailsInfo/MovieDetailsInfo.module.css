@@ -1,0 +1,16 @@
+.movieDetailsInfo {
+    display: flex;
+    padding: 20px 0;
+    gap: 40px;
+    border-bottom: 2px solid grey;
+}
+
+.movieDetailsTitle {
+    font-weight: 500;
+    font-size: 36px;
+}
+
+.movieDetailsText {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}

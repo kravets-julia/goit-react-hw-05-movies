@@ -1,9 +1,10 @@
 import PropTypes from 'prop-types';
+import css from '../../pages/Home/Home.module.css';
 
 const MovieListItem = ({ title }) => {
   return (
     <>
-      <li>{title}</li>
+      <li className={css.filmLink}>{title}</li>
     </>
   );
 };

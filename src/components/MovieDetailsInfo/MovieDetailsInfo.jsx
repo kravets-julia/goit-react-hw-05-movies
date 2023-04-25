@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import css from './MovieDetailsInfo.module.css';
 
 const MovieDetailsInfo = ({
   poster,
@@ -14,19 +15,19 @@ const MovieDetailsInfo = ({
   const genres = genresObj.map(gen => gen.name).join(', ');
 
   return (
-    <>
+    <div className={css.movieDetailsInfo}>
       <img src={`https://image.tmdb.org/t/p/w500${poster}`} alt="poster" />
       <div>
-        <h2>
+        <h2 className={css.movieDetailsTitle}>
           {title} ({year})
         </h2>
-        <p>User Score: {averageInPercent}%</p>
+        <p className={css.movieDetailsText}>User Score: {averageInPercent}%</p>
         <h3>Owerview</h3>
-        <p>{overview}</p>
+        <p className={css.movieDetailsText}>{overview}</p>
         <h3>Genres</h3>
-        <p>{genres}</p>
+        <p className={css.movieDetailsText}>{genres}</p>
       </div>
-    </>
+    </div>
   );
 };
 

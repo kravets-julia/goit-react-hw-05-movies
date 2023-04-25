@@ -1,11 +1,14 @@
 import MovieListItem from 'components/MovieListItem/MovieListItem';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
+import css from './Home.module.css';
 
 // import { link } from 'react-router-dom';
 
 const Home = () => {
   const [movie, setMovie] = useState([]);
+  const location = useLocation();
+
   useEffect(() => {
     const BASE_URL = 'https://api.themoviedb.org/3/trending/movie/week';
     const API_KEY = '1d813bdf96a00323bd29d62e55126d30';
@@ -25,10 +28,14 @@ const Home = () => {
 
   return (
     <>
-      <h2>Trending today</h2>
-      <ul>
+      <h1 className={css.filmsComtainerTitle}>Trending today</h1>
+      <ul className={css.filmsComtainer}>
         {movie.map(movie => (
-          <Link key={movie.id} to={`movies/${movie.id}`}>
+          <Link
+            key={movie.id}
+            to={`movies/${movie.id}`}
+            state={{ from: location }}
+          >
             <MovieListItem title={movie.title} />
           </Link>
         ))}

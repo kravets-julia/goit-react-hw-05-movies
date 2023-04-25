@@ -1,0 +1,15 @@
+.filmLink {
+    line-height: 1.7;
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+
+.filmsComtainer {
+    margin-top: 15px;
+}
+
+.filmsComtainerTitle {
+    margin-left: 40px;
+}

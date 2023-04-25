@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
-import { Link, useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
+import css from './Movies.module.css';
 
 const Movie = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [searchName, setSearchName] = useState('');
   const searchQuery = searchParams.get('query') ?? '';
+  const location = useLocation();
 
   useEffect(() => {
     if (searchQuery === '') {
@@ -35,20 +37,27 @@ const Movie = () => {
 
   return (
     <div>
-      <form onSubmit={onSubmit}>
+      <form onSubmit={onSubmit} className={css.searchForm}>
         <input
           type="text"
           //   value={searchQuery}
           name="input"
           //   onChange={handleChange}
+          className={css.formInput}
         />
-        <button type="submit">Search</button>
+        <button type="submit" className={css.formButton}>
+          Search
+        </button>
       </form>
       {searchName && (
-        <ul>
+        <ul className={css.filmsComtainer}>
           {searchName.map(film => (
             <li key={film.id}>
-              <Link to={`${film.id}`}>
+              <Link
+                to={`${film.id}`}
+                state={{ from: location }}
+                className={css.filmLink}
+              >
                 {/* <BiCameraMovie size="12px" /> */}
                 {film.title}
               </Link>

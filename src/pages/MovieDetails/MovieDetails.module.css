@@ -1,0 +1,33 @@
+/* export const BackLink=styled(Link)` display: flex;
+gap: 7px;
+align-items: center;
+text-decoration: none;
+color: black;
+font-weight: 500;
+font-size: 22px;
+
+&:hover {
+    color: red;
+}
+ */
+
+
+.detailsContainer {
+    padding: 20px 0;
+    border-bottom: 2px solid grey;
+}
+
+
+.detailsLink {
+    text-decoration: none;
+    color: black;
+}
+
+.detailsLink:hover {
+    color: red;
+}
+
+
+.detailsItem {
+    padding: 5px 0;
+}

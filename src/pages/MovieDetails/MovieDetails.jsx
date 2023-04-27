@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import MovieDetailsInfo from 'components/MovieDetailsInfo/MovieDetailsInfo';
@@ -71,7 +72,9 @@ const MoviesDetails = () => {
               </li>
             </ul>
           </div>
-          <Outlet />
+          <Suspense fallback={<div>Loading...</div>}>
+            <Outlet />
+          </Suspense>
         </>
       )}
     </>

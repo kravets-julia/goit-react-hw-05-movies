@@ -14,9 +14,10 @@ const Reviews = () => {
       const filmsReview = await fetch(
         `${BASE_URL}${movieId}/reviews?api_key=${API_KEY}`
       ).then(res => res.json());
-      if (filmsReview.results.length === 0)
-        return <p>We don`t have any reviews for this movie</p>;
+      if (filmsReview.results.length === '')
+        return <p>Sorry! We don`t have any reviews for this movie</p>;
       setReviews(filmsReview.results);
+      // console.log(filmsReview.results.length);
     }
 
     fetchReviews();
@@ -30,6 +31,7 @@ const Reviews = () => {
 
   return (
     <>
+      {!reviews && <div>We don't have any information.</div>}
       {reviews && (
         <ul>
           {reviews.map(({ author, content, id }) => (

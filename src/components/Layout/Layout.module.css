@@ -28,7 +28,6 @@
     font-size: 24px;
 }
 
-.layoutItem:hover,
 .layoutItem:active {
     color: red;
 }
